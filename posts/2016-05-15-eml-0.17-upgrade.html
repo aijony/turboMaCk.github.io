@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Elm 0.17 - Successful Upgrade of Real World App <br>…and some soft of guide to all of this</title>
+    <title>Elm 0.17 - Successful Upgrade of Real World App</title>
     <link rel="icon" type="image/png" href="../favicon.png" />
     <link href="https://fonts.googleapis.com/css?family=Cabin:400,400i,700,700i|Open+Sans:400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/default.css" />
@@ -21,7 +21,9 @@
     <main class="main-container">
       <div class="content">
         <h1>
-          Elm 0.17 - Successful Upgrade of Real World App <br>…and some soft of guide to all of this
+          Elm 0.17 - Successful Upgrade of Real World App
+          
+            <span class="subtitle">…and some soft of guide to all of this</span>
           
         </h1>
 
@@ -31,8 +33,8 @@
 </div>
 
 <p><em>Note: This is mirror of my <a href="https://medium.com/@turbo_MaCk/elm-0-17-successful-upgrade-of-real-world-app-and-some-soft-of-guide-to-all-of-this-cafd59dec56f">original</a> article published on medium.</em></p>
-<p>It has been few month since I’ve started to learn <a href="http://elm-lang.org/">Elm programming language</a>. I’ve been walking around elm for quite a while without ever touching it. After a while I decided to learn some statically typed functional language. This was a time when I finally decided to give elm a try. So I started to play with it. Learn a little bit of learning syntax, core functions, types, Signals, Effects, Mailboxes and <a href="https://github.com/evancz/elm-architecture-tutorial">Elm architecture</a>. It was quite interesting journey. Soon I’ll become wonder if I’ll be able to write some smaller project from end to start just using elm. Some kind of real world application to challenge myself and also this world of typed purity. I wanted it to talk to some JSON API. Github’s API seems to be good think to start with so I start writing github repository browser in elm. <a href="http://turbomack.github.io/elm-github-repos/">This is demo of app I’m talking about</a>.</p>
-<p>Just few days ago to me unexpected thing happens. <a href="http://elm-lang.org/blog/farewell-to-frp">Elm 0.17 release was announced!</a> Everyone who read that article was like “Omg, what’s going on?!”. From that moment Signals, Messages, Effects and Mailboxes are past of Elm. What should I think of it?</p>
+<p>It has been few month since I’ve started learning <a href="http://elm-lang.org/">Elm programming language</a>. I’ve been walking around elm for quite a while without ever touching it. However not so long ago I’ve decided to learn some statically typed functional language started reading <a href="http://learnyouahaskell.com/">Learn You Haskell for Great Good!</a> and so I also finally put my hands on Elm. I’ve learned bit of syntax, core library, types, Signals, Effects, Mailboxes and <a href="https://github.com/evancz/elm-architecture-tutorial">Elm architecture</a>. It was quite interesting journey. Soon I’ll become wonder if I’ll be able to write some smaller project from end to start just using elm. Some kind of real world application to challenge myself and also this world of typed purity. I wanted it to talk to some JSON API and use Html. Github’s API seems to be good think to start with so I start writing github repository browser in elm. <a href="http://turbomack.github.io/elm-github-repos/">This is demo of app I’m talking about</a>.</p>
+<p>Just few days ago to me unexpected thing happens. <a href="http://elm-lang.org/blog/farewell-to-frp">Elm 0.17 release was announced!</a> I remember myslef reading that announcement and thinking “Omg, what’s going on?!”. From that moment Signals, Messages, Effects and Mailboxes are past of Elm. What should I think of it?</p>
 <blockquote class="twitter-tweet" data-lang="en">
 <p lang="en" dir="ltr">
 <a href="https://twitter.com/rabbitonweb"><span class="citation">@rabbitonweb</span></a> I'm not sure yet. It's interesting and scary at the same time.
@@ -40,11 +42,11 @@
 — Marek Fajkus (<span class="citation">@turbo_MaCk</span>) <a href="https://twitter.com/turbo_MaCk/status/730355729778020352">May 11, 2016</a>
 </blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-<p>This was really huge change in how everybody (including me) things about building web apps in elm. We all know these kind of changes are really hard to bring in practice when you already have large codebase around your ecosystem. I that moment that app I wrote few month ago came to my mind. It looks like all <a href="http://package.elm-lang.org/">packages</a> it needs are ready for 0.17. Plan was made and yesterday I finally found some time to upgrade it to 0.17.</p>
-<p>Upgrading is always painful. It really is. I’m working on pretty large Ember.js application in my company. Ember core team is pretty careful about their <a href="http://emberjs.com/deprecations/v1.x/">deprecation planing</a>. Anyway upgrading that app was (and is) a huge pain. It’s always a huge pain when you have tens of thousands of code lines written with large test suites.</p>
-<p>Such a big design change that elm 0.17 brings to its ecosystem is something that can be impossible to happen to Javascript framework. Remember Angular 1.x vs 2.x? Express.js vs Koa.js?</p>
-<p>Luckily I have pretty small app written in elm which seems to be good candidate for going through this big upgrade process. I was not afraid of upgrading this since I was able to wrote whole app in one day or so. Even if I will need to rewrite it completely it will be still just a weekend project.</p>
-<p>One thing I think is particularly hard when starting with any upgrade is to find some pattern and split work into few iterations where each has its own goal. You can’t rewrite whole app at once. This is no how you design it and it shouldn’t be the way how you refactor it as well.</p>
+<p>This was really huge change in how everybody (including me) thinks about building web apps in Elm. We all know these kind of changes are really hard to bring in practice since you already have large codebase around your ecosystem. In that moment that app I wrote few month ago came to my mind. It looks like all <a href="http://package.elm-lang.org/">packages</a> it needs are ready for 0.17. Plan was made and yesterday I finally found some time and started with upgrade to 0.17.</p>
+<p>Upgrading is always painful. It really is. I’m working on pretty large Ember.js application at my company. Ember core team is pretty careful about their <a href="http://emberjs.com/deprecations/v1.x/">deprecation planing</a>. Anyway upgrading that app was (and is) a huge pain. It’s always complicated when you have tens of thousands of code lines and large test suits already written for legacy API.</p>
+<p>Such a big design change that Elm 0.17 brings to its ecosystem is something that can easily kill any JavaScript framework. Remember Angular 1.x vs 2.x? Express.js vs Koa.js?</p>
+<p>Luckily I have pretty small app which seems to be good candidate for going through this big upgrade process. I was not afraid of starting with upgrade since I was able to write whole app in just one day or so. Even if it turns out to be complete rewrite it can still be done over weekend.</p>
+<p>One thing is particularly hard when starting with any upgrade which is to find some pattern and split work into few smaller iterations where each has its own goal. Mostly you can’t rewrite whole app at once. This is no how you design it and it shouldn’t be the way how you refactor it as well.</p>
 <p>To be honest I was quite chaotic when I started with this upgrad but soon I realised some (or way how you can split upgrade into smaller iterations if you want) and this is why I’m sharing this story with you. No matter how big your project is I think you can apply these steps in order to make whole upgrade process of your elm 0.16 to 0.17 sooth and fun.</p>
 <p><strong>Note: This article is just about upgrading web app based on elm-html. I also have one project written with canvas backend (it’s kind of game) and other one as a library backed up just by elm-test. Anyway I will not focus on nether of these projects.</strong></p>
 <h2 id="lets-get-started">Lets get started</h2>
@@ -337,6 +339,13 @@ init <span class="fu">=</span>
 <p>This is on of scenarios where types really cover your back. Thanks to the fact that elm is <a href="https://en.wikipedia.org/wiki/Strong_and_weak_typing">strongly</a> and <a href="http://stackoverflow.com/questions/1517582/what-is-the-difference-between-statically-typed-and-dynamically-typed-languages">statically</a> typed it’s <strong>not such a big deal to introduce huge API changes</strong> as 0.17 did. I’m not a hardcore static type fan boy. I think there are big trade offs while choosing static over dynamic typed languages. Dynamic typing should be pretty powerful in some cases. I’m also pretty big fan of meta programming (think about Lisp(s) or Ruby). Anyway with static typing comes some extra safety. Extra safety in terms that you no need to be afraid start aggressively rewriting parts of your code. I think this is one thing Elm really shines in. My bets on Elm are pretty high thanks to this. I think Elm’s community can really benefits of this nature of safety. I expect there is <strong>bright future for Elm as language and architecture</strong>. The potential of bringing cutting edge concepts and constantly iterating on all its building blocks can really runs over whole <strong>React</strong> and <strong>Clojure Script</strong> word. I strongly believe that neither of these ecosystems will be able to implement experimental primitives rethink its design and more importantly bring all of this easily to large scale production applications as Elm can.</p>
 <p>Thanks to everyone in this community for making all of this happened. I’m super excited about what came next.</p>
 
+
+<div class="reddit-discussion">
+  <img src="../assets/reddit.png" alt="redit" class="reddit-logo">
+  Since I'm not a fan of disqus or any other commenting system there is no disscusion under this post.<br>
+  However I do like reddit as a platform so feel free to shout here:<br>
+  <a href="https://www.reddit.com//r/elm/comments/4jhaxf/elm_017_successful_upgrade_of_real_world_app_and/">/r/elm/comments/4jhaxf/elm_017_successful_upgrade_of_real_world_app_and/</a>
+</div>
 
 
       </div>
