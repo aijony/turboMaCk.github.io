@@ -49,7 +49,7 @@
 <li>Each method will return object it’s called on (so we can chain method calls).</li>
 </ul>
 <h2 id="interface">Interface</h2>
-<p>Now we know what we need so lets define interface for out <code>exactTip</code> function.</p>
+<p>Now we know what we need so lets define interface for out <code>exactAxis</code> function.</p>
 <pre class="typescript"><code>import * as d3 from 'd3';
 
 interface TickFormat extends Function {
@@ -84,27 +84,27 @@ interface ExactAxis&lt;T&gt; extends Function {
 </blockquote>
 <p>That’s exactly what I was looking for!</p>
 <p>Let’s have a look at how we minimal “implementation” that satisfy our interface:</p>
-<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> exactTip<span class="op">&lt;</span>T<span class="op">&gt;</span>() <span class="op">:</span> ExactTip<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span>
-    <span class="kw">const</span> tip <span class="op">=</span> <span class="op">&lt;</span>ExactTip<span class="op">&lt;</span>T<span class="op">&gt;&gt;</span><span class="kw">function</span>() <span class="op">{</span>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> exactAxis<span class="op">&lt;</span>T<span class="op">&gt;</span>() <span class="op">:</span> ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span>
+    <span class="kw">const</span> axis <span class="op">=</span> <span class="op">&lt;</span>ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;&gt;</span><span class="kw">function</span>() <span class="op">{</span>
     <span class="op">}</span>
 
-    <span class="va">tip</span>.<span class="at">scale</span> <span class="op">=</span> <span class="kw">function</span>(<span class="dt">scale </span><span class="op">:</span> <span class="va">d3</span>.<span class="va">scale</span>.<span class="at">Ordinal</span><span class="op">&lt;</span>any<span class="op">,</span> any<span class="op">&gt;</span>) <span class="op">:</span> ExactTip<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span>
-        <span class="cf">return</span> tip<span class="op">;</span>
+    <span class="va">axis</span>.<span class="at">scale</span> <span class="op">=</span> <span class="kw">function</span>(<span class="dt">scale </span><span class="op">:</span> <span class="va">d3</span>.<span class="va">scale</span>.<span class="at">Ordinal</span><span class="op">&lt;</span>any<span class="op">,</span> any<span class="op">&gt;</span>) <span class="op">:</span> ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span>
+        <span class="cf">return</span> axis<span class="op">;</span>
     <span class="op">}</span>
 
-    <span class="va">tip</span>.<span class="at">data</span> <span class="op">=</span> <span class="kw">function</span>(<span class="dt">d </span><span class="op">:</span> T[]) <span class="op">{</span>
-        <span class="cf">return</span> tip<span class="op">;</span>
+    <span class="va">axis</span>.<span class="at">data</span> <span class="op">=</span> <span class="kw">function</span>(<span class="dt">d </span><span class="op">:</span> T[]) <span class="op">{</span>
+        <span class="cf">return</span> axis<span class="op">;</span>
     <span class="op">}</span>
 
-    <span class="va">tip</span>.<span class="at">tickFormat</span> <span class="op">=</span> <span class="kw">function</span>(<span class="dt">fc </span><span class="op">:</span> TickFormat<span class="op">&lt;</span>T<span class="op">&gt;</span>) <span class="op">:</span> ExactTip<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span>
-        <span class="cf">return</span> tip<span class="op">;</span>
+    <span class="va">axis</span>.<span class="at">tickFormat</span> <span class="op">=</span> <span class="kw">function</span>(<span class="dt">fc </span><span class="op">:</span> TickFormat<span class="op">&lt;</span>T<span class="op">&gt;</span>) <span class="op">:</span> ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span>
+        <span class="cf">return</span> axis<span class="op">;</span>
     <span class="op">}</span>
 
-    <span class="cf">return</span> tip<span class="op">;</span>
+    <span class="cf">return</span> axis<span class="op">;</span>
 <span class="op">}</span></code></pre></div>
 <p>That’s it! Actually this won’t do anything but it’s whole boiler plate we need. Now comes the easy part. We can just simply implement logic (and that’s always simpler than designing API, right?)</p>
 <p>So as a bonus - This is one possible implementation:</p>
-<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> exactTip<span class="op">&lt;</span>T<span class="op">&gt;</span>() <span class="op">:</span> ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> exactAxis<span class="op">&lt;</span>T<span class="op">&gt;</span>() <span class="op">:</span> ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span>
     <span class="co">// Constants</span>
     <span class="kw">const</span> <span class="dt">TEXT_DELTA </span><span class="op">:</span> number <span class="op">=</span> <span class="dv">25</span><span class="op">;</span>
     <span class="kw">const</span> <span class="dt">WITHOUT_TEXT_DELTA </span><span class="op">:</span> number <span class="op">=</span> <span class="fl">12.5</span><span class="op">;</span>
@@ -116,7 +116,7 @@ interface ExactAxis&lt;T&gt; extends Function {
 
     <span class="co">// Render</span>
 
-    <span class="kw">const</span> tip <span class="op">=</span> <span class="op">&lt;</span>ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;&gt;</span><span class="kw">function</span>(g) <span class="op">{</span>
+    <span class="kw">const</span> axis <span class="op">=</span> <span class="op">&lt;</span>ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;&gt;</span><span class="kw">function</span>(g) <span class="op">{</span>
 
         <span class="co">// D3 always returns array</span>
         <span class="co">// Lets render axis for every given group.</span>
@@ -183,27 +183,27 @@ interface ExactAxis&lt;T&gt; extends Function {
 
     <span class="co">// Public Interface</span>
 
-    <span class="va">tip</span>.<span class="at">scale</span> <span class="op">=</span> <span class="kw">function</span>(<span class="dt">newScale </span><span class="op">:</span> <span class="va">d3</span>.<span class="va">scale</span>.<span class="at">Ordinal</span><span class="op">&lt;</span>any<span class="op">,</span> any<span class="op">&gt;</span>) <span class="op">:</span> ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span>
+    <span class="va">axis</span>.<span class="at">scale</span> <span class="op">=</span> <span class="kw">function</span>(<span class="dt">newScale </span><span class="op">:</span> <span class="va">d3</span>.<span class="va">scale</span>.<span class="at">Ordinal</span><span class="op">&lt;</span>any<span class="op">,</span> any<span class="op">&gt;</span>) <span class="op">:</span> ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span>
         scale <span class="op">=</span> newScale<span class="op">;</span>
-        <span class="cf">return</span> tip<span class="op">;</span>
+        <span class="cf">return</span> axis<span class="op">;</span>
     <span class="op">}</span>
 
-    <span class="va">tip</span>.<span class="at">data</span> <span class="op">=</span> <span class="kw">function</span>(<span class="dt">d </span><span class="op">:</span> T[]) <span class="op">{</span>
+    <span class="va">axis</span>.<span class="at">data</span> <span class="op">=</span> <span class="kw">function</span>(<span class="dt">d </span><span class="op">:</span> T[]) <span class="op">{</span>
         data <span class="op">=</span> d<span class="op">;</span>
-        <span class="cf">return</span> tip<span class="op">;</span>
+        <span class="cf">return</span> axis<span class="op">;</span>
     <span class="op">}</span>
 
-    <span class="va">tip</span>.<span class="at">tickFormat</span> <span class="op">=</span> <span class="kw">function</span>(<span class="dt">fc </span><span class="op">:</span> TickFormat<span class="op">&lt;</span>T<span class="op">&gt;</span>) <span class="op">:</span> ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span>
+    <span class="va">axis</span>.<span class="at">tickFormat</span> <span class="op">=</span> <span class="kw">function</span>(<span class="dt">fc </span><span class="op">:</span> TickFormat<span class="op">&lt;</span>T<span class="op">&gt;</span>) <span class="op">:</span> ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span>
         tickFormat <span class="op">=</span> fc<span class="op">;</span>
-        <span class="cf">return</span> tip<span class="op">;</span>
+        <span class="cf">return</span> axis<span class="op">;</span>
     <span class="op">}</span>
 
-    <span class="cf">return</span> tip<span class="op">;</span>
+    <span class="cf">return</span> axis<span class="op">;</span>
 <span class="op">}</span></code></pre></div>
 <p><em>Note: If you read carefully you know that I’m not using <code>this</code> often. However for this example has one usage of <code>this</code> to get element in d3’s <code>each</code> method. It doesn’t make sense to go against library API.</em></p>
-<p><em>Note: This is really simplified implementation. Actual thing similar to this we have in our lib uses 3 types of ticks (long text, short text, no text). This means also different interface for <code>FormatValue</code> an we are also always adding line tip (without text) in middle of tips with text. However I think this simpler example is better for purpose of this article.</em></p>
+<p><em>Note: This is really simplified implementation. Actual thing similar to this we have in our lib uses 3 types of ticks (long text, short text, no text). This means also different interface for <code>FormatValue</code> an we are also always adding line tick (without text) in middle of ticks with text. However I think this simpler example is better for purpose of this article.</em></p>
 <h2 id="dont-drink-too-much-kool-aid">Don’t Drink Too Much Kool-Aid</h2>
-<p>TypeScript maybe lets you express these kind of dynamic APIs but there is down side to it. If you remove implementation for any method compiler won’t complain even though your function does not return valid <code>ExactTip&lt;T&gt;</code> implementation. However if you make mistake in method implementation (change its types) it will fail during compile time which seems as an improvement to pure JS version. That said if you want to play with something like this It’s usually good idea to <strong>always start with boilerplate with all methods defined</strong>.</p>
+<p>TypeScript maybe lets you express these kind of dynamic APIs but there is down side to it. If you remove implementation for any method compiler won’t complain even though your function does not return valid <code>ExactAxis&lt;T&gt;</code> implementation. However if you make mistake in method implementation (change its types) it will fail during compile time which seems as an improvement to pure JS version. That said if you want to play with something like this It’s usually good idea to <strong>always start with boilerplate with all methods defined</strong>.</p>
 
 
 <div class="reddit-discussion">
