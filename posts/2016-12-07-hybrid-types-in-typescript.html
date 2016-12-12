@@ -139,7 +139,7 @@ interface ExactAxis&lt;T&gt; extends Function {
                         <span class="kw">const</span> latestWithoutText <span class="op">=</span> <span class="at">last</span>(<span class="va">acc</span>.<span class="at">withoutText</span>)<span class="op">;</span>
 
                         <span class="co">// check for delta from latest with text</span>
-                        <span class="cf">if</span> (<span class="va">Math</span>.<span class="at">abs</span>(<span class="at">scale</span>(latestWithoutText) <span class="op">-</span> <span class="at">scale</span>(d)) <span class="op">&gt;=</span> WITHOUT_TEXT_DELTA) <span class="op">{</span>
+                        <span class="cf">if</span> (<span class="va">Math</span>.<span class="at">abs</span>(<span class="at">scale</span>(latestWithText) <span class="op">-</span> <span class="at">scale</span>(d)) <span class="op">&gt;=</span> WITHOUT_TEXT_DELTA) <span class="op">{</span>
 
                             <span class="co">// check for delta from latest without text</span>
                             <span class="cf">if</span> (<span class="op">!</span>latestWithoutText <span class="op">||</span> <span class="va">Math</span>.<span class="at">abs</span>(<span class="at">scale</span>(latestWithoutText) <span class="op">-</span> <span class="at">scale</span>(d)) <span class="op">&gt;=</span> WITHOUT_TEXT_DELTA) <span class="op">{</span>
@@ -155,28 +155,33 @@ interface ExactAxis&lt;T&gt; extends Function {
 
             <span class="co">// With text</span>
             <span class="kw">const</span> withText <span class="op">=</span> <span class="va">g</span>.<span class="at">selectAll</span>(<span class="st">'.tick.tick--with-text'</span>).<span class="at">data</span>(<span class="va">ticksData</span>.<span class="at">withText</span>)<span class="op">;</span>
+
             <span class="va">withText</span>.<span class="at">enter</span>().<span class="at">append</span>(<span class="st">'g'</span>)
-                .<span class="at">attr</span>(<span class="st">'class'</span><span class="op">,</span> <span class="st">'tick tick-with-text'</span>)
+                .<span class="at">attr</span>(<span class="st">'class'</span><span class="op">,</span> <span class="st">'tick tick--with-text'</span>)
                 .<span class="at">append</span>(<span class="st">'text'</span>)
                 .<span class="at">style</span>(<span class="st">'text-anchor'</span><span class="op">,</span> <span class="st">'middle'</span>)<span class="op">;</span>
+
             <span class="va">withText</span>.<span class="at">transition</span>()
-                .<span class="at">attr</span>(<span class="st">'transform'</span><span class="op">,</span> d <span class="op">=&gt;</span> <span class="vs">`translate(</span><span class="sc">${</span><span class="at">scale</span>(d)<span class="op">,</span> <span class="dv">15</span><span class="sc">}</span><span class="vs">)`</span>)
+                .<span class="at">attr</span>(<span class="st">'transform'</span><span class="op">,</span> d <span class="op">=&gt;</span> <span class="vs">`translate(</span><span class="sc">${</span><span class="at">scale</span>(d)<span class="sc">}</span><span class="vs">, 15)`</span>)
                 .<span class="at">select</span>(<span class="st">'text'</span>)
                 .<span class="at">text</span>(tickFormat)<span class="op">;</span>
 
             <span class="va">withText</span>.<span class="at">exit</span>().<span class="at">remove</span>()<span class="op">;</span>
 
             <span class="co">// Without text</span>
-            <span class="kw">const</span> withoutText <span class="op">=</span> <span class="va">d3</span>.<span class="at">selectAll</span>(<span class="st">'.tick.tick--without-text'</span>).<span class="at">data</span>(<span class="va">ticksData</span>.<span class="at">withoutText</span>)<span class="op">;</span>
+            <span class="kw">const</span> withoutText <span class="op">=</span> <span class="va">g</span>.<span class="at">selectAll</span>(<span class="st">'.tick.tick--without-text'</span>).<span class="at">data</span>(<span class="va">ticksData</span>.<span class="at">withoutText</span>)<span class="op">;</span>
+
             <span class="va">withoutText</span>.<span class="at">enter</span>().<span class="at">append</span>(<span class="st">'g'</span>)
-                .<span class="at">attr</span>(<span class="st">'class'</span><span class="op">,</span> <span class="st">'tick tick-without-text'</span>)
+                .<span class="at">attr</span>(<span class="st">'class'</span><span class="op">,</span> <span class="st">'tick tick--without-text'</span>)
                 .<span class="at">append</span>(<span class="st">'line'</span>)
                 .<span class="at">attr</span>(<span class="st">'x1'</span><span class="op">,</span> <span class="dv">0</span>)
                 .<span class="at">attr</span>(<span class="st">'x2'</span><span class="op">,</span> <span class="dv">0</span>)
                 .<span class="at">attr</span>(<span class="st">'y1'</span><span class="op">,</span> <span class="dv">0</span>)
                 .<span class="at">attr</span>(<span class="st">'y2'</span><span class="op">,</span> <span class="dv">5</span>)<span class="op">;</span>
+
             <span class="va">withoutText</span>.<span class="at">transition</span>()
                 .<span class="at">attr</span>(<span class="st">'transform'</span><span class="op">,</span> d <span class="op">=&gt;</span> <span class="vs">`trnaslate(</span><span class="sc">${</span><span class="at">scale</span>(d)<span class="sc">}</span><span class="vs">, 0)`</span>)<span class="op">;</span>
+
             <span class="va">withoutText</span>.<span class="at">exit</span>().<span class="at">remove</span>()<span class="op">;</span>
         <span class="op">}</span>)<span class="op">;</span>
     <span class="op">}</span>
