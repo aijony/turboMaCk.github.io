@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel>
+        <title>turbo_MaCk - All posts</title>
+        <link>http://turbomack.github.iuo</link>
+        <description><![CDATA[Personal website of turbo_MaCk]]></description>
+        <atom:link href="http://turbomack.github.iuo/rss.xml" rel="self"
+                   type="application/rss+xml" />
+        <lastBuildDate>Wed, 21 Dec 2016 00:00:00 UT</lastBuildDate>
+        <item>
+    <title>Org Mode in Hakyll</title>
+    <link>http://turbomack.github.iuo/posts/2016-12-21-org-mode-in-hakyll.html</link>
+    <description><![CDATA[<p>As an <a href="https://gnu.org/software/emacs/">Emacs</a> user I’m really glad that I can benefit from full power of <a href="http://pandoc.org">Pandoc</a> thanks to <a href="https://jaspervdj.be/hakyll/">Hakyll</a> while creating this site. One of the Emacs’ beloved mode - <a href="http://orgmode.org/">org-mode</a> is supported by Pandoc therefore you can use it as markup language in Hakyll. Org-mode is really powerful. There is only problem with it - it’s almost exclusive for Emacs environment. <a href="https://gist.github.com/kinjo/509761">Github</a> maybe supports org preview but true power of org comes from editing experience in Emacs. Because Org is so exclusive to Emacs (written in E-Lisp) it’s hardly default markup even for many Emacs users simply because many of them has to to support all kinds of users not just ones who happen to use Emacs and org. Markdown is de-facto standard these days. This is for example why I’m personally also writing markdown daily. However this is quite different when it comes to project maintained only by one person - you. Org mode is simply so much better for taking notes, creating to-dos and much more that it become one of the most successful Emacs extension. Especially when it comes to <a href="https://en.wikipedia.org/wiki/Literate_programming">literate programming</a> which is what I mostly trying to do on this blog and more generally <a href="http://reproducibleresearch.net">reproducible research</a> which is movement I’m pretty big fan of. I’m also actively looking for interesting ideas and tools since I’ve discovered <a href="https://jupyter.org">Jubyter notebooks</a> about a year ago.</p>
+<p>To be honest since I’m mostly working on documents maintain by group of people (mostly colleagues) I’m not really an expert on org-mode. Anyway I was working on new blog post recently where I would really appreciate some of Org’s features. This is why I’ve recently added org support to this site willing to test Pandoc support. I’ve also decided to keep this document public on this site as a kind of reference which might be helpful to some folks.</p>
+<p>Actually this is the end of post itself. Everything below is just to test how Pandoc handles org files.</p>
+<h1 id="this-is-h1">This is H1</h1>
+<p>There is paragraph under h1</p>
+<h2 id="h2">H2</h2>
+<h3 id="h3">H3</h3>
+<h1 id="some-basic-test">Some basic test</h1>
+<p>This is <strong>bold</strong>, <em>italic</em>, <code>code</code>, <code>verbatim</code> and <del>strike</del> text.</p>
+<ul>
+<li>However <strong>/bold and italic/</strong> doesn’t play well when used together like in markdown.</li>
+<li>However <em>*bold and italic*</em> doesn’t play well when used together like in markdown.</li>
+</ul>
+<h1 id="list">List</h1>
+<ul>
+<li>Bullet</li>
+<li>Another bullet
+<ul>
+<li>child
+<ul>
+<li>deep</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="other-style">Other style</h2>
+<ul>
+<li>Bullet</li>
+<li>Another bullet * child * deep</li>
+</ul>
+<h2 id="other-style-1">Other style</h2>
+<ol>
+<li>Bullet</li>
+<li>Another bullet
+<ol>
+<li>child
+<ol>
+<li>deep</li>
+</ol></li>
+</ol></li>
+</ol>
+<p>Style <code>*</code> isn’t supported.</p>
+<h1 id="links">Links</h1>
+<p><em><a href="http://orgmode.org/" class="uri">http://orgmode.org/</a></em></p>
+<h1 id="check-list-13-33">Check List [1/3] [33%]</h1>
+<ul>
+<li>[ ] Item</li>
+<li>[ ] Item</li>
+<li>[X] Checked item</li>
+</ul>
+<p>Heading and has special class however <code>&lt;ul&gt;</code> and <code>&lt;li&gt;</code> are plain.</p>
+<h1 id="task-list">Task List</h1>
+<h2 id="todo-some-to-do">TODO some to-do</h2>
+<h2 id="done-done-to-do">DONE done to-do</h2>
+<p>Items are added with special class.</p>
+<h1 id="tables">Tables</h1>
+<table>
+<thead>
+<tr class="header">
+<th>number</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>looooong long name</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>name</td>
+</tr>
+</tbody>
+</table>
+<p><code>&lt;tr&gt;</code> has <code>even</code> and <code>odd</code> classes.</p>
+<h1 id="source-code">Source Code</h1>
+<p><strong>Emacs Lisp:</strong></p>
+<div class="sourceCode"><pre class="sourceCode commonlisp"><code class="sourceCode commonlisp">(<span class="kw">defun</span><span class="fu"> negate </span>(x)
+    <span class="st">&quot;Negate the value of x.&quot;</span>
+    (<span class="op">-</span> x))</code></pre></div>
+<div class="sourceCode" rundoc-language="emacs-lisp" rundoc-results="output"><pre class="sourceCode commonlisp rundoc-block"><code class="sourceCode commonlisp">(<span class="kw">print</span>
+    (negate <span class="dv">10</span>))</code></pre></div>
+<pre class="example"><code>-10
+</code></pre>
+<p>There are interesting classes like <code>sourceCode</code> and <code>example</code>. Also there html5 attributes prefixed with <code>rundoc-</code>.</p>
+<p><strong>Haskell:</strong></p>
+<div class="sourceCode" rundoc-language="haskell" rundoc-results="output"><pre class="sourceCode haskell rundoc-block"><code class="sourceCode haskell"><span class="ot">factorial ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+factorial <span class="dv">0</span> <span class="fu">=</span> <span class="dv">1</span>
+factorial n <span class="fu">=</span> n <span class="fu">*</span> factorial (n <span class="fu">-</span> <span class="dv">1</span>)</code></pre></div>
+<h1 id="latex">LaTeX</h1>
+<ul>
+<li><strong>Characters:</strong> <em>α</em> <em>β</em> → ↑ ∨ ∧ ⟹ <em>π</em> ∞</li>
+<li><strong>Inline Math:</strong> <span class="math inline"><em>f</em>(<em>x</em>)=<em>x</em><sup>2</sup></span></li>
+<li><strong>More complex:</strong> <span class="math inline">$\frac{x^2}{2}$</span></li>
+</ul>
+<p>LaTeX characters are wrapped in <code>&lt;em&gt;</code> and Math inside <code>&lt;span class=&quot;math inline&quot;&gt;</code>.</p>
+<h2 id="ℋℯ𝓁𝓁ℴ">ℋℯ𝓁𝓁ℴ!</h2>
+
+<p><strong>NOTE:</strong> <em>There is standard LaTeX embeded above which is skipped during compilation to HTML.</em></p>
+<p><strong>This is using</strong> <em><a href="https://www.mathjax.org/" class="uri">https://www.mathjax.org/</a></em></p>
+<p><br /><span class="math display">$$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$$</span><br /></p>
+<h1 id="deadline">Deadline</h1>
+<p>DEADLINE: &lt;2016-12-20 Tue&gt;</p>
+<h1 id="tagged">Tagged<span class="tag" data-tag-name="tag"></span></h1>
+<p>Tags are not visible in render</p>
+<h1 id="block-quote">Block Quote</h1>
+<blockquote>
+<p>Org mode is amazing. So is Hakyll &amp; Pandoc.</p>
+</blockquote>
+<h1 id="image">Image</h1>
+<p><a href="http://media.riffsy.com/images/f8534774b678ad1932b379a03460680b/raw" class="uri">http://media.riffsy.com/images/f8534774b678ad1932b379a03460680b/raw</a></p>
+<p>Images has to have extension like:</p>
+<p><img src="../assets/reddit.png" /></p>
+<p>then it can be loaded even from other origin..</p>
+<p><img src="http://45.media.tumblr.com/270992d792c9899f79888a8ea6955ca5/tumblr_o0jt792qLd1r83d7lo6_540.gif" /></p>]]></description>
+    <pubDate>Wed, 21 Dec 2016 00:00:00 UT</pubDate>
+    <guid>http://turbomack.github.iuo/posts/2016-12-21-org-mode-in-hakyll.html</guid>
+    <dc:creator>Marek Fajkus</dc:creator>
+</item>
+<item>
+    <title>Hybrid Types in TypeScript</title>
+    <link>http://turbomack.github.iuo/posts/2016-12-07-hybrid-types-in-typescript.html</link>
+    <description><![CDATA[<p>Yesterday I’ve been refactoring one of our internal library in <a href="globalwebindex.net">GWI</a> from JavaScript to TypeScript. As a JavaScript veteran I like to use some edgy non-conventional &amp; pre-ES 2015 coding styles. I’m not using <code>prototype</code>, <code>class</code> or <code>this</code> much often. I’m rather using <a href="http://javascript.info/tutorial/factory-constructor-pattern">Factory Constructor Pattern</a> quite often as well as <a href="https://en.wikipedia.org/wiki/Higher-order_function">Higher Order Functions</a> for simulating <a href="https://en.wikipedia.org/wiki/Currying">currying</a> and like to with objects and play with scopes. Now you might think that this is silly. No one will understand my code and using truly private functions makes it harder to extend functionality. And you’re right:D Anyway I know that I can write more reliable code more quickly and from my experience when code is reliable enough not many people will need to change it. And when they do they are mostly experienced and are able to understand it. Also I like private functions. If you miss any functionality or abstraction it’s always good idea to add it directly to library or write your own than hack it. Anyway this article is not about these patterns and how to use them but rather about how it feels when you put <a href="https://www.typescriptlang.org">TypeScript</a> in the mix. If you want to learn more about these patterns <a href="https://duckduckgo.com/">DuckDuckGo</a> some other article.</p>
+<p>First let me explain one thing. I’m not writing TypeScript day to day. But when I do I’m mostly exploring edges of what it can do. I’m writing a lot of ES 2015 ECMAScript in work and <a href="elm-lang.org">Elm</a> for fun (what is slowly changing since we already shipped first feature written in Elm elm as part of our production <a href="ember.js">Ember.js</a> app).</p>
+<h1 id="problem">Problem</h1>
+<p>The idea is this. We have got our internal system for charts written in <a href="https://d3js.org/">D3.js</a>. Some parts of this are <a href="https://github.com/GlobalWebIndex/d3scription">open-sourced and available on GitHub</a>. In GWI we have got whole charts written in pure D3 that are sharing common interface so on application layer you’re basically just dynamically switching factory functions for charts based on based on chart type and everything works like a magic. However testing visualization layer is hard or even impossible. Wouldn’t it be a good idea to have at least type check for these interfaces? I think it would!</p>
+<p>For purpose of this tutorial I’ve picked one smaller part rather than whole chart. D3 itself comes with component called <a href="https://github.com/d3/d3/blob/master/API.md#axes-d3-axis">d3.svg.axis</a>. However sometimes it doesn’t fit your needs so you’ll need to implement your own solution. Lets say we want to implement custom axis which will create ticks based on data we have so for each data-point it will create a tick on axis. This is how we want to use our new component:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">const</span> axis <span class="op">=</span> <span class="at">exactAxis</span>()
+    .<span class="at">scale</span>(scale)
+    .<span class="at">data</span>(someData)
+    .<span class="at">tickFormat</span>(d <span class="op">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>d<span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span>
+
+<span class="va">d3</span>.<span class="at">select</span>(<span class="st">&#39;.axis-group&#39;</span>).<span class="at">call</span>(axis)<span class="op">;</span></code></pre></div>
+<p>As you can see I’ve chosen <code>exactAxis</code> as a name for this component. It’s a <code>function</code>. However it returns some <code>Object</code> that has at least <code>scale</code>, <code>data</code> &amp; <code>tickFormat</code> methods. We’re using chaining so at least <code>scale</code> and <code>data</code> should return object they are defined on. Also on the last line we are using <a href="https://github.com/d3/d3-selection/blob/master/README.md#selection_call">d3.selection.call</a> which means that <code>axis</code> (thing returned by <code>tickFormat</code> call) needs to be <code>function</code>. This might mean that <code>tickFormat</code> returns some <code>function</code> instead of <code>object</code> but that is silly idea. Then you will need to always call <code>tickFormat</code> as last method. That said I think we can agree that:</p>
+<ul>
+<li><code>exactAxis()</code> returns <code>function</code> (and <strong>functions are Objects in JavaScript</strong>) with all methods defined.</li>
+<li>Each method will return object it’s called on (so we can chain method calls).</li>
+</ul>
+<h2 id="interface">Interface</h2>
+<p>Now we know what we need so lets define interface for out <code>exactAxis</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> <span class="op">*</span> <span class="im">as</span> d3 <span class="im">from</span> <span class="st">&#39;d3&#39;</span><span class="op">;</span>
+
+<span class="kw">interface</span> TickFormat <span class="kw">extends</span> Function <span class="op">{</span>
+    (any) <span class="op">:</span> string<span class="op">;</span>
+<span class="op">}</span>
+
+<span class="kw">interface</span> ExactAxis <span class="kw">extends</span> Function <span class="op">{</span>
+    (<span class="dt">g </span><span class="op">:</span> <span class="va">d3</span>.<span class="at">Selection</span><span class="op">&lt;</span>any<span class="op">&gt;</span>) <span class="op">:</span> <span class="kw">void</span><span class="op">;</span>
+    <span class="at">scale</span>(<span class="dt">scale </span><span class="op">:</span> <span class="va">d3</span>.<span class="va">scale</span>.<span class="at">Ordinal</span><span class="op">&lt;</span>any<span class="op">,</span> any<span class="op">&gt;</span>) <span class="op">:</span> ExactAxis<span class="op">;</span>
+    <span class="at">data</span>(<span class="dt">data </span><span class="op">:</span> any[]) <span class="op">:</span> ExactAxis<span class="op">;</span>
+    <span class="at">tickFormat</span>(<span class="dt">fc </span><span class="op">:</span> TickFormat) <span class="op">:</span> ExactAxis<span class="op">;</span>
+<span class="op">}</span></code></pre></div>
+<p>As you can see there are some <code>any</code> used. Maybe it’s good idea to solve this using <a href="https://www.typescriptlang.org/docs/handbook/generics.html">Generics</a>.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> <span class="op">*</span> <span class="im">as</span> d3 <span class="im">from</span> <span class="st">&#39;d3&#39;</span><span class="op">;</span>
+
+<span class="kw">interface</span> TickFormat<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="kw">extends</span> Function <span class="op">{</span>
+    (<span class="dt">data </span><span class="op">:</span> T) <span class="op">:</span> string<span class="op">;</span>
+<span class="op">}</span>
+
+<span class="kw">interface</span> ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="kw">extends</span> Function <span class="op">{</span>
+    (<span class="dt">g </span><span class="op">:</span> <span class="va">d3</span>.<span class="at">Selection</span><span class="op">&lt;</span>any<span class="op">&gt;</span>) <span class="op">:</span> <span class="kw">void</span><span class="op">;</span>
+    <span class="at">scale</span>(<span class="dt">scale </span><span class="op">:</span> <span class="va">d3</span>.<span class="va">scale</span>.<span class="at">Ordinal</span><span class="op">&lt;</span>any<span class="op">,</span> any<span class="op">&gt;</span>) <span class="op">:</span> ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;;</span>
+    <span class="at">data</span>(<span class="dt">data </span><span class="op">:</span> T[]) <span class="op">:</span> ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;;</span>
+    <span class="at">tickFormat</span>(<span class="dt">fc </span><span class="op">:</span> TickFormat<span class="op">&lt;</span>T<span class="op">&gt;</span>) <span class="op">:</span> ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;;</span>
+<span class="op">}</span></code></pre></div>
+<p>OK this is better. Now it’s obvious that we are passing some data around.</p>
+<p>There are still some <code>any</code> used for d3 parts but I think we can leave it.</p>
+<h2 id="so-called-hybrid-types-in-ts">So Called Hybrid Types in TS</h2>
+<p>Now we can actually start implementing our axis component. This was the part I was not familiar till yesterday. I was actually asking some friends who work with typescript daily how an interface like this can be implemented in typescript but unluckily no one knew. I knew how this can be done in JS but that implementation did not satisfy tsc (compiler). Than as all SW engineers I’ve turned my last hope to <a href="https://www.typescriptlang.org/docs/handbook/interfaces.html">documentation</a> and found part about <a href="https://www.typescriptlang.org/docs/handbook/interfaces.html#hybrid-types">Hybrid Types</a>.</p>
+<blockquote>
+<p>As we mentioned earlier, interfaces can describe the rich types present in real world JavaScript. Because of JavaScript’s dynamic and flexible nature, you may occasionally encounter an object that works as a combination of some of the types described above.</p>
+</blockquote>
+<p>That’s exactly what I was looking for!</p>
+<p>Let’s have a look at how we minimal “implementation” that satisfy our interface:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> exactAxis<span class="op">&lt;</span>T<span class="op">&gt;</span>() <span class="op">:</span> ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span>
+    <span class="kw">const</span> axis <span class="op">=</span> <span class="op">&lt;</span>ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;&gt;</span><span class="kw">function</span>() <span class="op">{</span>
+    <span class="op">}</span>
+
+    <span class="va">axis</span>.<span class="at">scale</span> <span class="op">=</span> <span class="kw">function</span>(<span class="dt">scale </span><span class="op">:</span> <span class="va">d3</span>.<span class="va">scale</span>.<span class="at">Ordinal</span><span class="op">&lt;</span>any<span class="op">,</span> any<span class="op">&gt;</span>) <span class="op">:</span> ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span>
+        <span class="cf">return</span> axis<span class="op">;</span>
+    <span class="op">}</span>
+
+    <span class="va">axis</span>.<span class="at">data</span> <span class="op">=</span> <span class="kw">function</span>(<span class="dt">d </span><span class="op">:</span> T[]) <span class="op">{</span>
+        <span class="cf">return</span> axis<span class="op">;</span>
+    <span class="op">}</span>
+
+    <span class="va">axis</span>.<span class="at">tickFormat</span> <span class="op">=</span> <span class="kw">function</span>(<span class="dt">fc </span><span class="op">:</span> TickFormat<span class="op">&lt;</span>T<span class="op">&gt;</span>) <span class="op">:</span> ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span>
+        <span class="cf">return</span> axis<span class="op">;</span>
+    <span class="op">}</span>
+
+    <span class="cf">return</span> axis<span class="op">;</span>
+<span class="op">}</span></code></pre></div>
+<p>That’s it! Actually this won’t do anything but it’s whole boiler plate we need. Now comes the easy part. We can just simply implement logic (and that’s always simpler than designing API, right?)</p>
+<p>So as a bonus - This is one possible full implementation:</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> exactAxis<span class="op">&lt;</span>T<span class="op">&gt;</span>() <span class="op">:</span> ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span>
+    <span class="co">// Constants</span>
+    <span class="kw">const</span> <span class="dt">TEXT_DELTA </span><span class="op">:</span> number <span class="op">=</span> <span class="dv">25</span><span class="op">;</span>
+    <span class="kw">const</span> <span class="dt">WITHOUT_TEXT_DELTA </span><span class="op">:</span> number <span class="op">=</span> <span class="fl">12.5</span><span class="op">;</span>
+
+    <span class="co">// Instance variables</span>
+    <span class="kw">let</span> <span class="dt">data </span><span class="op">:</span> T[] <span class="op">=</span> []<span class="op">;</span>
+    <span class="kw">let</span> <span class="dt">tickFormat </span><span class="op">:</span> TickFormat<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">=</span> (d) <span class="op">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>d<span class="sc">}</span><span class="vs">`</span><span class="op">;</span>
+    <span class="kw">let</span> scale<span class="op">;</span>
+
+    <span class="co">// Render</span>
+
+    <span class="kw">const</span> axis <span class="op">=</span> <span class="op">&lt;</span>ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;&gt;</span><span class="kw">function</span>(g) <span class="op">{</span>
+
+        <span class="co">// D3 always returns array</span>
+        <span class="co">// Lets render axis for every given group.</span>
+        <span class="va">g</span>.<span class="at">each</span>(<span class="kw">function</span>() <span class="op">{</span>
+            <span class="kw">const</span> <span class="dt">$el </span><span class="op">:</span> <span class="va">d3</span>.<span class="at">Selection</span><span class="op">&lt;</span>any<span class="op">&gt;</span> <span class="op">=</span> <span class="va">d3</span>.<span class="at">select</span>(<span class="kw">this</span>)<span class="op">;</span>
+
+            <span class="co">// Prepare data for ticks</span>
+            <span class="kw">const</span> ticksData <span class="op">=</span> <span class="va">data</span>.<span class="at">sort</span>((a<span class="op">,</span> b) <span class="op">=&gt;</span> <span class="at">Number</span>(a) <span class="op">-</span> <span class="at">Number</span>(b))
+                .<span class="at">reduce</span>((acc<span class="op">,</span> d) <span class="op">=&gt;</span> <span class="op">{</span>
+                    <span class="kw">const</span> latestWithText <span class="op">=</span> <span class="at">last</span>(<span class="va">acc</span>.<span class="at">withText</span>)<span class="op">;</span>
+
+                    <span class="co">// skip duplicates immediately</span>
+                    <span class="cf">if</span> (latestWithText <span class="op">&amp;&amp;</span> latestWithText <span class="op">===</span> d) <span class="op">{</span> <span class="cf">return</span> acc<span class="op">;</span> <span class="op">}</span>
+
+                    <span class="co">// for first or not too close we add text one</span>
+                    <span class="cf">if</span> (<span class="op">!</span>latestWithText <span class="op">||</span> <span class="va">Math</span>.<span class="at">abs</span>(<span class="at">scale</span>(latestWithText) <span class="op">-</span> <span class="at">scale</span>(d)) <span class="op">&gt;=</span> TEXT_DELTA) <span class="op">{</span>
+                        <span class="va">acc</span>.<span class="va">withText</span>.<span class="at">push</span>(d)<span class="op">;</span>
+                    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span>
+                        <span class="co">// we add tick without text</span>
+                        <span class="kw">const</span> latestWithoutText <span class="op">=</span> <span class="at">last</span>(<span class="va">acc</span>.<span class="at">withoutText</span>)<span class="op">;</span>
+
+                        <span class="co">// check for delta from latest with text</span>
+                        <span class="cf">if</span> (<span class="va">Math</span>.<span class="at">abs</span>(<span class="at">scale</span>(latestWithText) <span class="op">-</span> <span class="at">scale</span>(d)) <span class="op">&gt;=</span> WITHOUT_TEXT_DELTA) <span class="op">{</span>
+
+                            <span class="co">// check for delta from latest without text</span>
+                            <span class="cf">if</span> (<span class="op">!</span>latestWithoutText <span class="op">||</span> <span class="va">Math</span>.<span class="at">abs</span>(<span class="at">scale</span>(latestWithoutText) <span class="op">-</span> <span class="at">scale</span>(d)) <span class="op">&gt;=</span> WITHOUT_TEXT_DELTA) <span class="op">{</span>
+                                <span class="va">acc</span>.<span class="va">withoutText</span>.<span class="at">push</span>(d)<span class="op">;</span>
+                            <span class="op">}</span>
+                        <span class="op">}</span>
+                    <span class="op">}</span>
+
+                    <span class="cf">return</span> acc<span class="op">;</span>
+                <span class="op">},</span> <span class="op">{</span> <span class="dt">withText</span><span class="op">:</span> []<span class="op">,</span> <span class="dt">withoutText</span><span class="op">:</span> [] <span class="op">}</span> )<span class="op">;</span>
+
+            <span class="co">// Render</span>
+
+            <span class="co">// With text</span>
+            <span class="kw">const</span> withText <span class="op">=</span> <span class="va">g</span>.<span class="at">selectAll</span>(<span class="st">&#39;.tick.tick--with-text&#39;</span>).<span class="at">data</span>(<span class="va">ticksData</span>.<span class="at">withText</span>)<span class="op">;</span>
+
+            <span class="va">withText</span>.<span class="at">enter</span>().<span class="at">append</span>(<span class="st">&#39;g&#39;</span>)
+                .<span class="at">attr</span>(<span class="st">&#39;class&#39;</span><span class="op">,</span> <span class="st">&#39;tick tick--with-text&#39;</span>)
+                .<span class="at">append</span>(<span class="st">&#39;text&#39;</span>)
+                .<span class="at">style</span>(<span class="st">&#39;text-anchor&#39;</span><span class="op">,</span> <span class="st">&#39;middle&#39;</span>)<span class="op">;</span>
+
+            <span class="va">withText</span>.<span class="at">transition</span>()
+                .<span class="at">attr</span>(<span class="st">&#39;transform&#39;</span><span class="op">,</span> d <span class="op">=&gt;</span> <span class="vs">`translate(</span><span class="sc">${</span><span class="at">scale</span>(d)<span class="sc">}</span><span class="vs">, 15)`</span>)
+                .<span class="at">select</span>(<span class="st">&#39;text&#39;</span>)
+                .<span class="at">text</span>(tickFormat)<span class="op">;</span>
+
+            <span class="va">withText</span>.<span class="at">exit</span>().<span class="at">remove</span>()<span class="op">;</span>
+
+            <span class="co">// Without text</span>
+            <span class="kw">const</span> withoutText <span class="op">=</span> <span class="va">g</span>.<span class="at">selectAll</span>(<span class="st">&#39;.tick.tick--without-text&#39;</span>).<span class="at">data</span>(<span class="va">ticksData</span>.<span class="at">withoutText</span>)<span class="op">;</span>
+
+            <span class="va">withoutText</span>.<span class="at">enter</span>().<span class="at">append</span>(<span class="st">&#39;g&#39;</span>)
+                .<span class="at">attr</span>(<span class="st">&#39;class&#39;</span><span class="op">,</span> <span class="st">&#39;tick tick--without-text&#39;</span>)
+                .<span class="at">append</span>(<span class="st">&#39;line&#39;</span>)
+                .<span class="at">attr</span>(<span class="st">&#39;x1&#39;</span><span class="op">,</span> <span class="dv">0</span>)
+                .<span class="at">attr</span>(<span class="st">&#39;x2&#39;</span><span class="op">,</span> <span class="dv">0</span>)
+                .<span class="at">attr</span>(<span class="st">&#39;y1&#39;</span><span class="op">,</span> <span class="dv">0</span>)
+                .<span class="at">attr</span>(<span class="st">&#39;y2&#39;</span><span class="op">,</span> <span class="dv">5</span>)<span class="op">;</span>
+
+            <span class="va">withoutText</span>.<span class="at">transition</span>()
+                .<span class="at">attr</span>(<span class="st">&#39;transform&#39;</span><span class="op">,</span> d <span class="op">=&gt;</span> <span class="vs">`trnaslate(</span><span class="sc">${</span><span class="at">scale</span>(d)<span class="sc">}</span><span class="vs">, 0)`</span>)<span class="op">;</span>
+
+            <span class="va">withoutText</span>.<span class="at">exit</span>().<span class="at">remove</span>()<span class="op">;</span>
+        <span class="op">}</span>)<span class="op">;</span>
+    <span class="op">}</span>
+
+    <span class="co">// Public Interface</span>
+
+    <span class="va">axis</span>.<span class="at">scale</span> <span class="op">=</span> <span class="kw">function</span>(<span class="dt">newScale </span><span class="op">:</span> <span class="va">d3</span>.<span class="va">scale</span>.<span class="at">Ordinal</span><span class="op">&lt;</span>any<span class="op">,</span> any<span class="op">&gt;</span>) <span class="op">:</span> ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span>
+        scale <span class="op">=</span> newScale<span class="op">;</span>
+        <span class="cf">return</span> axis<span class="op">;</span>
+    <span class="op">}</span>
+
+    <span class="va">axis</span>.<span class="at">data</span> <span class="op">=</span> <span class="kw">function</span>(<span class="dt">d </span><span class="op">:</span> T[]) <span class="op">{</span>
+        data <span class="op">=</span> d<span class="op">;</span>
+        <span class="cf">return</span> axis<span class="op">;</span>
+    <span class="op">}</span>
+
+    <span class="va">axis</span>.<span class="at">tickFormat</span> <span class="op">=</span> <span class="kw">function</span>(<span class="dt">fc </span><span class="op">:</span> TickFormat<span class="op">&lt;</span>T<span class="op">&gt;</span>) <span class="op">:</span> ExactAxis<span class="op">&lt;</span>T<span class="op">&gt;</span> <span class="op">{</span>
+        tickFormat <span class="op">=</span> fc<span class="op">;</span>
+        <span class="cf">return</span> axis<span class="op">;</span>
+    <span class="op">}</span>
+
+    <span class="cf">return</span> axis<span class="op">;</span>
+<span class="op">}</span></code></pre></div>
+<p><em>Note: If you read carefully you know that I’m not using <code>this</code> often. However for this example has one usage of <code>this</code> to get element in d3’s <code>each</code> method. It doesn’t make sense to go against library API.</em></p>
+<p><em>Note: This is really simplified implementation. Actual thing similar to this we have in our lib uses 3 types of ticks (long text, short text, no text). This means also different interface for <code>FormatValue</code> an we are also always adding line tick (without text) in middle of ticks with text. However I think this simpler example is better for purpose of this article.</em></p>
+<h2 id="dont-drink-too-much-kool-aid">Don’t Drink Too Much Kool-Aid</h2>
+<p>TypeScript maybe lets you express these kind of dynamic APIs but there is down side to it. If you remove implementation for any method compiler won’t complain even though your function does not return valid <code>ExactAxis&lt;T&gt;</code> implementation. However if you make mistake in method implementation (change its types) it will fail during compile time which seems as an improvement to pure JS version. That said if you want to play with something like this It’s usually good idea to <strong>always start with boilerplate with all methods defined</strong>.</p>]]></description>
+    <pubDate>Wed, 07 Dec 2016 00:00:00 UT</pubDate>
+    <guid>http://turbomack.github.iuo/posts/2016-12-07-hybrid-types-in-typescript.html</guid>
+    <dc:creator>Marek Fajkus</dc:creator>
+</item>
+<item>
+    <title>Elm 0.17 - Successful Upgrade of Real World App</title>
+    <link>http://turbomack.github.iuo/posts/2016-05-15-eml-0.17-upgrade.html</link>
+    <description><![CDATA[<p><em>Note: This is mirror of my <a href="https://medium.com/@turbo_MaCk/elm-0-17-successful-upgrade-of-real-world-app-and-some-soft-of-guide-to-all-of-this-cafd59dec56f">original</a> article published on medium.</em></p>
+<p>It has been few month since I’ve started learning <a href="http://elm-lang.org/">Elm programming language</a>. I’ve been walking around elm for quite a while without ever touching it. However not so long ago I’ve decided to learn some statically typed functional language started reading <a href="http://learnyouahaskell.com/">Learn You Haskell for Great Good!</a> and so I also finally put my hands on Elm. I’ve learned bit of syntax, core library, types, Signals, Effects, Mailboxes and <a href="https://github.com/evancz/elm-architecture-tutorial">Elm architecture</a>. It was quite interesting journey. Soon I’ll become wonder if I’ll be able to write some smaller project from end to start just using elm. Some kind of real world application to challenge myself and also this world of typed purity. I wanted it to talk to some JSON API and use Html. Github’s API seems to be good think to start with so I start writing github repository browser in elm. <a href="http://turbomack.github.io/elm-github-repos/">This is demo of app I’m talking about</a>.</p>
+<p>Just few days ago to me unexpected thing happens. <a href="http://elm-lang.org/blog/farewell-to-frp">Elm 0.17 release was announced!</a> I remember myslef reading that announcement and thinking “Omg, what’s going on?!”. From that moment Signals, Messages, Effects and Mailboxes are past of Elm. What should I think of it?</p>
+<blockquote class="twitter-tweet" data-lang="en">
+<p lang="en" dir="ltr">
+<a href="https://twitter.com/rabbitonweb"><span class="citation">@rabbitonweb</span></a> I'm not sure yet. It's interesting and scary at the same time.
+</p>
+— Marek Fajkus (<span class="citation">@turbo_MaCk</span>) <a href="https://twitter.com/turbo_MaCk/status/730355729778020352">May 11, 2016</a>
+</blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>This was really huge change in how everybody (including me) thinks about building web apps in Elm. We all know these kind of changes are really hard to bring in practice since you already have large codebase around your ecosystem. In that moment that app I wrote few month ago came to my mind. It looks like all <a href="http://package.elm-lang.org/">packages</a> it needs are ready for 0.17. Plan was made and yesterday I finally found some time and started with upgrade to 0.17.</p>
+<p>Upgrading is always painful. It really is. I’m working on pretty large Ember.js application at my company. Ember core team is pretty careful about their <a href="http://emberjs.com/deprecations/v1.x/">deprecation planing</a>. Anyway upgrading that app was (and is) a huge pain. It’s always complicated when you have tens of thousands of code lines and large test suits already written for legacy API.</p>
+<p>Such a big design change that Elm 0.17 brings to its ecosystem is something that can easily kill any JavaScript framework. Remember Angular 1.x vs 2.x? Express.js vs Koa.js?</p>
+<p>Luckily I have pretty small app which seems to be good candidate for going through this big upgrade process. I was not afraid of starting with upgrade since I was able to write whole app in just one day or so. Even if it turns out to be complete rewrite it can still be done over weekend.</p>
+<p>One thing is particularly hard when starting with any upgrade which is to find some pattern and split work into few smaller iterations where each has its own goal. Mostly you can’t rewrite whole app at once. This is no how you design it and it shouldn’t be the way how you refactor it as well.</p>
+<p>To be honest I was quite chaotic when I started with this upgrad but soon I realised some (or way how you can split upgrade into smaller iterations if you want) and this is why I’m sharing this story with you. No matter how big your project is I think you can apply these steps in order to make whole upgrade process of your elm 0.16 to 0.17 sooth and fun.</p>
+<p><strong>Note: This article is just about upgrading web app based on elm-html. I also have one project written with canvas backend (it’s kind of game) and other one as a library backed up just by elm-test. Anyway I will not focus on nether of these projects.</strong></p>
+<h2 id="lets-get-started">Lets get started</h2>
+<p>You can check or clone whole 0.16 version code from <a href="https://github.com/turboMaCk/elm-github-repos/tree/v0.16">Github under v0.16 tag</a>. With our legacy code and <a href="https://github.com/elm-lang/elm-platform/blob/master/upgrade-docs/0.17.md">Upgrading to 0.17 guide</a> opened we are ready to try what new Elm is about.</p>
+<h2 id="new-dependencies">New dependencies</h2>
+<p>This is pretty straight forward. We can almost copy/paste this part from upgrade guide so Lets open elm-package.json in your favorite <a href="https://www.gnu.org/software/emacs/">Emacs</a> and get it done.</p>
+<p><strong>Old version:</strong></p>
+<div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
+    <span class="dt">&quot;version&quot;</span><span class="fu">:</span> <span class="st">&quot;1.0.0&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;summary&quot;</span><span class="fu">:</span> <span class="st">&quot;helpful summary of your project, less than 80 characters&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;repository&quot;</span><span class="fu">:</span> <span class="st">&quot;https://github.com/user/project.git&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;license&quot;</span><span class="fu">:</span> <span class="st">&quot;BSD3&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;source-directories&quot;</span><span class="fu">:</span> <span class="ot">[</span>
+        <span class="st">&quot;.&quot;</span>
+    <span class="ot">]</span><span class="fu">,</span>
+    <span class="dt">&quot;exposed-modules&quot;</span><span class="fu">:</span> <span class="ot">[]</span><span class="fu">,</span>
+    <span class="dt">&quot;dependencies&quot;</span><span class="fu">:</span> <span class="fu">{</span>
+        <span class="dt">&quot;deadfoxygrandpa/elm-test&quot;</span><span class="fu">:</span> <span class="st">&quot;3.1.0 &lt;= v &lt; 4.0.0&quot;</span><span class="fu">,</span>
+        <span class="dt">&quot;elm-lang/core&quot;</span><span class="fu">:</span> <span class="st">&quot;3.0.0 &lt;= v &lt; 4.0.0&quot;</span><span class="fu">,</span>
+        <span class="dt">&quot;evancz/elm-effects&quot;</span><span class="fu">:</span> <span class="st">&quot;2.0.1 &lt;= v &lt; 3.0.0&quot;</span><span class="fu">,</span>
+        <span class="dt">&quot;evancz/elm-html&quot;</span><span class="fu">:</span> <span class="st">&quot;4.0.2 &lt;= v &lt; 5.0.0&quot;</span><span class="fu">,</span>
+        <span class="dt">&quot;evancz/elm-http&quot;</span><span class="fu">:</span> <span class="st">&quot;3.0.0 &lt;= v &lt; 4.0.0&quot;</span><span class="fu">,</span>
+        <span class="dt">&quot;evancz/start-app&quot;</span><span class="fu">:</span> <span class="st">&quot;2.0.2 &lt;= v &lt; 3.0.0&quot;</span>
+    <span class="fu">},</span>
+    <span class="dt">&quot;elm-version&quot;</span><span class="fu">:</span> <span class="st">&quot;0.16.0 &lt;= v &lt; 0.17.0&quot;</span>
+<span class="fu">}</span></code></pre></div>
+<p><strong>New version:</strong></p>
+<div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
+    <span class="dt">&quot;version&quot;</span><span class="fu">:</span> <span class="st">&quot;1.0.0&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;summary&quot;</span><span class="fu">:</span> <span class="st">&quot;helpful summary of your project, less than 80 characters&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;repository&quot;</span><span class="fu">:</span> <span class="st">&quot;https://github.com/user/project.git&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;license&quot;</span><span class="fu">:</span> <span class="st">&quot;BSD3&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;source-directories&quot;</span><span class="fu">:</span> <span class="ot">[</span>
+        <span class="st">&quot;.&quot;</span>
+    <span class="ot">]</span><span class="fu">,</span>
+    <span class="dt">&quot;exposed-modules&quot;</span><span class="fu">:</span> <span class="ot">[]</span><span class="fu">,</span>
+    <span class="dt">&quot;dependencies&quot;</span><span class="fu">:</span> <span class="fu">{</span>
+        <span class="dt">&quot;elm-lang/core&quot;</span><span class="fu">:</span> <span class="st">&quot;4.0.0 &lt;= v &lt; 5.0.0&quot;</span><span class="fu">,</span>
+        <span class="dt">&quot;elm-lang/html&quot;</span><span class="fu">:</span> <span class="st">&quot;1.0.0 &lt;= v &lt; 2.0.0&quot;</span><span class="fu">,</span>
+        <span class="dt">&quot;evancz/elm-http&quot;</span><span class="fu">:</span> <span class="st">&quot;3.0.1 &lt;= v &lt; 4.0.0&quot;</span>
+    <span class="fu">},</span>
+    <span class="dt">&quot;elm-version&quot;</span><span class="fu">:</span> <span class="st">&quot;0.17.0 &lt;= v &lt; 0.18.0&quot;</span>
+<span class="fu">}</span></code></pre></div>
+<p><em>Note: As you can see I’m a little bit sloppy. Almost all meta is not filled out but since this was never published (and never will be) as package we just leave it as it is for now. One more thing to mention is that there is elm-test specified as dependency in legacy version but I actually never used it in this project. This is why it’s not in updated version.</em></p>
+<p>Then we run package install as usual:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">elm-package</span> install</code></pre></div>
+<h2 id="module-declaration">Module Declaration</h2>
+<p>With new packages installed we can start rewriting application logic for new APIs. One smaller change is to update model declaration to new syntax. Replace:</p>
+<pre><code>module Repos where</code></pre>
+<p>with:</p>
+<pre><code>module Repos exposing (main)</code></pre>
+<p>We can also change imports to match new module structure.</p>
+<p>Here is complete old version and new equivalent:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Repos</span> <span class="kw">where</span>
+
+<span class="kw">import </span><span class="dt">List</span>
+<span class="kw">import </span><span class="dt">Graphics.Element</span> exposing (..)
+<span class="kw">import </span><span class="dt">Http</span>
+<span class="kw">import </span><span class="dt">Json.Decode</span> <span class="kw">as</span> <span class="dt">Json</span> exposing ((:=))
+<span class="kw">import </span><span class="dt">Task</span>
+<span class="kw">import </span><span class="dt">Signal</span>
+<span class="kw">import </span><span class="dt">Html</span> exposing (..)
+<span class="kw">import </span><span class="dt">Html.Attributes</span> exposing (..)
+<span class="kw">import </span><span class="dt">Html.Events</span> <span class="kw">as</span> <span class="dt">Events</span>
+<span class="kw">import </span><span class="dt">Effects</span> exposing (<span class="dt">Effects</span>)
+<span class="kw">import </span><span class="dt">StartApp</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Repos</span> exposing (main)
+
+<span class="kw">import </span><span class="dt">List</span>
+<span class="kw">import </span><span class="dt">Html</span> exposing (..)
+<span class="kw">import </span><span class="dt">Html.App</span>
+<span class="kw">import </span><span class="dt">Html.Attributes</span> exposing (..)
+<span class="kw">import </span><span class="dt">Html.Events</span> <span class="kw">as</span> <span class="dt">Events</span>
+<span class="kw">import </span><span class="dt">Http</span>
+<span class="kw">import </span><span class="dt">Json.Decode</span> <span class="kw">as</span> <span class="dt">Json</span> exposing ((:=))
+<span class="kw">import </span><span class="dt">Task</span> exposing (..)</code></pre></div>
+<p>As you can see this app needs much less modules using 0.17.</p>
+<h2 id="views-startapp">Views + StartApp</h2>
+<p>Next step according to upgrade guide should be replacing Action with Msg. Anyway I’d like to start with views since my first goal is to be able to render initial state of application. We will go back to update function in a minute.</p>
+<p>What I did is to get rid off address passing from view, change type annotations and comment out all events. This is basically what needs to be done:</p>
+<p>replace:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">view <span class="fu">:</span> <span class="dt">Signal.Address</span> <span class="dt">Action</span> <span class="ot">-&gt;</span> <span class="dt">Model</span> <span class="ot">-&gt;</span> <span class="dt">Html</span>
+view address model <span class="fu">=</span></code></pre></div>
+<p>with:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">view <span class="fu">:</span> <span class="dt">Model</span> <span class="ot">-&gt;</span> <span class="dt">Html</span> <span class="dt">Msg</span>
+view model <span class="fu">=</span></code></pre></div>
+<p>replace also all calls to “sub views”</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">div [ <span class="kw">class</span> “app<span class="fu">-</span>container” ]
+    [ headerView address model ]</code></pre></div>
+<p>with something like</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">div [ <span class="kw">class</span> “app<span class="fu">-</span>container” ]
+    [ headerView model ]</code></pre></div>
+<p>And finally comment out Events (we get back to them later):</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">div
+    [ <span class="kw">class</span> “repo<span class="fu">-</span>main”
+    <span class="co">-- , Events.onClick address (SelectRepo repo)</span>
+    ]</code></pre></div>
+<p>I also had custom Events for input and submit. In this step we can simply comment them out.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">-</span>— onInput <span class="fu">:</span> <span class="dt">Signal.Address</span> <span class="dt">Action</span> <span class="ot">-&gt;</span> (<span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Action</span>) <span class="ot">-&gt;</span> <span class="dt">Attribute</span>
+—<span class="fu">-</span> onInput address f <span class="fu">=</span>
+    —<span class="fu">-</span> Events.on “input” Events.targetValue (\v <span class="ot">-&gt;</span> Signal.message address (f v))
+
+—<span class="fu">-</span> oSubmit address value <span class="fu">=</span>
+    —<span class="fu">-</span> Events.onWithOptions “submit”
+        —<span class="fu">-</span> { stopPropagation <span class="fu">=</span> <span class="dt">True</span>, preventDefault <span class="fu">=</span> <span class="dt">True</span> }
+        —<span class="fu">-</span> Json.value (\_ <span class="ot">-&gt;</span> Signal.message address (<span class="dt">FetchData</span> value))</code></pre></div>
+<p>If you now try to compile app you can still see compile error. <strong>We no longer need port in 0.17!</strong> Let’s remove it then!</p>
+<h3 id="fixing-glue">Fixing glue</h3>
+<p>Now we can see much more reasonable errors during compilation. Mostly legacy Effects stuff, missing Msg type and StartApp. Let’s fix this one by one.</p>
+<p>Firstly we can <strong>comment out all Effects stuff</strong> since our first goal is to render initial state. Also we need to get rid off all calls to these functions. For now lets replace every call in <strong>update</strong> with <strong>Cmd.none</strong> which is replacement for legacy <strong>Effects.none</strong>.</p>
+<p>Also it looks like we are now in update function part so lets change <strong>Action</strong> type to new <strong>Msg</strong> and refactor arguments according to guide.</p>
+<p>This is how update action looks like after these changes:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">update <span class="fu">:</span> <span class="dt">Msg</span> <span class="ot">-&gt;</span> <span class="dt">Model</span> <span class="ot">-&gt;</span> (<span class="dt">Model</span>, <span class="dt">Cmd</span> <span class="dt">Msg</span>)
+update action model <span class="fu">=</span>
+    <span class="kw">case</span> action <span class="kw">of</span>
+        <span class="dt">NoOp</span> <span class="ot">-&gt;</span>
+            ( model, Cmd.none )
+    <span class="dt">FetchData</span> name <span class="ot">-&gt;</span>
+        ( { model
+            <span class="fu">|</span> isLoading <span class="fu">=</span> <span class="dt">True</span>
+            , resultsFor <span class="fu">=</span> model<span class="fu">.</span>userName }
+            , Cmd.none )
+            —<span class="fu">-</span> , fetchDataAsEffects model<span class="fu">.</span>userName )
+    <span class="dt">FetchDone</span> results <span class="ot">-&gt;</span>
+        ( { model
+            <span class="fu">|</span> repos <span class="fu">=</span> results
+            , isLoading <span class="fu">=</span> <span class="dt">False</span>
+            , alert <span class="fu">=</span> “” }
+            , Cmd.none )</code></pre></div>
+<p><em>Note: This is just simplified version, but you get the idea…</em></p>
+<p>I my case I also need to change initialState since fetchData function is also called in this place. I’ll replace it with <strong>Cmd.none</strong> too.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">init <span class="fu">:</span> ( <span class="dt">Model</span>, <span class="dt">Cmd</span> <span class="dt">Msg</span> )
+init <span class="fu">=</span>
+    ( initialModel
+    , Cmd.none )
+    — , fetchDataAsEffects initialModel<span class="fu">.</span>userName )</code></pre></div>
+<p>At last but not least we still did not change main function and legacy StartApp code. This can be copy/pasted from upgrade guide. Result looks like this:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">:</span> <span class="dt">Program</span> <span class="dt">Never</span>
+main <span class="fu">=</span>
+    Html.App.program
+        { init <span class="fu">=</span> init
+        , update <span class="fu">=</span> update
+        , view <span class="fu">=</span> view
+        , subscriptions <span class="fu">=</span> \_ <span class="ot">-&gt;</span> Sub.none }</code></pre></div>
+<p><strong>App now renders without errors!</strong></p>
+<p>Ok. Looks like there is a lot of going on. <a href="https://gist.github.com/turboMaCk/98d2e40231c4033deca29c148d4684cc#file-repos-elm">This is</a> how whole code looks like after these changes.</p>
+<h2 id="goodbye-effects">Goodbye Effects!</h2>
+<p>So app is kind of working now. They said if it compile, than it works, right? Anyway it’s not much useful since it do nothing. I think it’s good time to have a look at Effects. With Http working we will be able to fetch first data which seems to be reasonable next stage.</p>
+<p>Looking at the <a href="http://package.elm-lang.org/packages/evancz/elm-http/3.0.1/">new api documentation</a> I think we will no longer need function for transforming Results to Action. I started by removing this one. Also one for creating Effects Action seems to be useless. Let’s remove this one too.</p>
+<p>Let’s have a look at fetchData function. Looks like we will need to change this one a little bit. Here is old version:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">fetchData <span class="fu">:</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Task.Task</span> a (<span class="dt">Result</span> <span class="dt">Http.Error</span> (<span class="dt">List</span> <span class="dt">Repo</span>))
+fetchData name <span class="fu">=</span>
+    Http.get reposDecoder (getUrl name)
+    <span class="fu">|&gt;</span> Task.toResult</code></pre></div>
+<p>new implementation looks like:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">fetchData <span class="fu">:</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Cmd</span> <span class="dt">Msg</span>
+fetchData name <span class="fu">=</span>
+    <span class="kw">let</span> url <span class="fu">=</span>
+        getUrl name
+    <span class="kw">in</span>
+        Task.perform <span class="dt">FetchFail</span> <span class="dt">FetchDone</span> (Http.get reposDecoder url)</code></pre></div>
+<p>As you can see we will need to change error handling logic. In my case I just added Type <strong>FetchFail</strong> to <strong>Msg</strong> union type.** Thir also means we need to add this branch to pattern matching inside update function. Lets replace old <strong>Error</strong> with new <strong>FetchFail</strong>. We can reuse old <strong>httpErrorToString</strong> function for transforming <strong>Error</strong> to <strong>String</strong>.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">Msg</span> <span class="fu">=</span> <span class="dt">NoOp</span>
+    <span class="fu">|</span> <span class="dt">FetchData</span> <span class="dt">String</span>
+    <span class="fu">|</span> <span class="dt">FetchDone</span> (<span class="dt">List</span> <span class="dt">Repo</span>)
+    <span class="fu">|</span> <span class="dt">FetchFail</span> <span class="dt">Http.Error</span> <span class="co">-- THIS!!!!!!!!!!!</span>
+    <span class="fu">|</span> <span class="dt">NameChanged</span> <span class="dt">String</span>
+    <span class="fu">|</span> <span class="dt">SelectRepo</span> <span class="dt">Repo</span>
+    <span class="fu">|</span> <span class="dt">ChangeSort</span> <span class="dt">SortBy</span>
+
+update <span class="fu">:</span> <span class="dt">Msg</span> <span class="ot">-&gt;</span> <span class="dt">Model</span> <span class="ot">-&gt;</span> (<span class="dt">Model</span>, <span class="dt">Cmd</span> <span class="dt">Msg</span>)
+update msg model <span class="fu">=</span>
+    <span class="kw">case</span> msg <span class="kw">of</span>
+        <span class="dt">NoOp</span> <span class="ot">-&gt;</span>
+            ( model, Cmd.none )
+        <span class="dt">FetchData</span> name <span class="ot">-&gt;</span>
+            ( { model
+                <span class="fu">|</span> isLoading <span class="fu">=</span> <span class="dt">True</span>
+                , resultsFor <span class="fu">=</span> model<span class="fu">.</span>userName }
+                , Cmd.none )
+            — , fetchDataAsEffects model<span class="fu">.</span>userName )
+        <span class="dt">FetchDone</span> results <span class="ot">-&gt;</span>
+            ( { model
+                <span class="fu">|</span> repos <span class="fu">=</span> results
+                , isLoading <span class="fu">=</span> <span class="dt">False</span>
+                , alert <span class="fu">=</span> “” }
+                , Cmd.none )
+        <span class="dt">FetchFail</span> error <span class="ot">-&gt;</span> <span class="co">-- THIS!!!!!!!!!!!!</span>
+            ( { model
+                <span class="fu">|</span> repos <span class="fu">=</span> []
+                , isLoading <span class="fu">=</span> <span class="dt">False</span>
+                , alert <span class="fu">=</span> (httpErrorToString model<span class="fu">.</span>userName error) }
+                , Cmd.none )</code></pre></div>
+<p>Nice! App should now compile without errors.</p>
+<p>Now we can change init function and try if it works. Change:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">init <span class="fu">:</span> ( <span class="dt">Model</span>, <span class="dt">Cmd</span> <span class="dt">Msg</span> )
+init <span class="fu">=</span>
+    ( initialModel
+    , fetchDataAsEffects initialModel<span class="fu">.</span>userName )</code></pre></div>
+<p>to:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">init <span class="fu">:</span> ( <span class="dt">Model</span>, <span class="dt">Cmd</span> <span class="dt">Msg</span> )
+init <span class="fu">=</span>
+    ( initialModel
+    , fetchData initialModel<span class="fu">.</span>userName )</code></pre></div>
+<p><strong>It works! There is no compile error, request is sent and results are rendered. So far so good!</strong></p>
+<p>To complete this part we can just remove <strong>Cmd.none</strong> and call <strong>fetchData</strong> in update function’s <strong>FetchData</strong> branch which will be triggered later via user interactions.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">    <span class="dt">FetchData</span> name <span class="ot">-&gt;</span>
+        ( { model
+            <span class="fu">|</span> isLoading <span class="fu">=</span> <span class="dt">True</span>
+            , resultsFor <span class="fu">=</span> model<span class="fu">.</span>userName }
+            , fetchData model<span class="fu">.</span>userName )</code></pre></div>
+<p><a href="https://gist.github.com/turboMaCk/a2f9b204f3259fb2be10754e4ad10565#file-repos-elm">This</a> is snapshot of code at this stage:</p>
+<h2 id="events">Events</h2>
+<p>We are almost finished. Last missing step is to bring back events to allow user interactions.</p>
+<p>I’d like to start with uncommenting Events.onClick and removing address argument like this:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[ button
+    [ <span class="kw">class</span> (classNames <span class="dt">Name</span>)
+    — , Events.onClick address (<span class="dt">ChangeSort</span> <span class="dt">Name</span>) ]
+    ]
+    [ text “name” ]</code></pre></div>
+<p>new version:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[ button
+    [ <span class="kw">class</span> (classNames <span class="dt">Name</span>)
+    , Events.onClick (<span class="dt">ChangeSort</span> <span class="dt">Name</span>) ]
+    [ text “name” ]</code></pre></div>
+<p><strong>Now sorting buttons and repository description should work.</strong></p>
+<p>This is cool but we are still missing user name update and form submitting. In forms I’d like to use submit instead click since this makes Enter and other handy UX tweaks for mobile. Do you remember that two functions we previously commented out? One of the did the trick with Submit, other one hooks input event. Let’s have a look at <strong>Html.Events</strong> <a href="http://package.elm-lang.org/packages/elm-lang/html/1.0.0/Html-Events">documentation</a>.</p>
+<p><strong>Looks like new version have these two build in!</strong></p>
+<p>This means we can <strong>remove both commented functions</strong> and give the build-in ones a try.</p>
+<p>change:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">input
+    [ value model<span class="fu">.</span>userName
+    — , onInput address <span class="dt">NameChanged</span>
+    , <span class="kw">class</span> “search<span class="fu">-</span>field” ] []</code></pre></div>
+<p>to:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">input
+    [ value model<span class="fu">.</span>userName
+    , Events.onInput <span class="dt">NameChanged</span> ] []</code></pre></div>
+<p>and:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">Html.form
+    — [ onSubmit address model<span class="fu">.</span>userName
+    [ <span class="kw">class</span> “search<span class="fu">-</span>form” ]</code></pre></div>
+<p>to:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">Html.form
+    [ Events.onSubmit (<span class="dt">FetchData</span> model<span class="fu">.</span>userName)
+    , <span class="kw">class</span> “search<span class="fu">-</span>form” ]</code></pre></div>
+<p><strong>We are (almost) done!</strong></p>
+<p><a href="https://gist.github.com/turboMaCk/ab2ef6e7f9ac393645faa0c6754dda29#file-repos-elm">This</a> is final version of our new implementation.</p>
+<h2 id="load-app-in-html">Load app in Html</h2>
+<p>Last step is to make new version of application work with Html. Just follow upgrading guide. This how mine index.html looks like:</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>HTML<span class="dt">&gt;</span>
+<span class="kw">&lt;html&gt;</span>
+    <span class="kw">&lt;head&gt;</span>
+        <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">”UTF-8</span><span class="er">&quot;</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;title&gt;</span>Github repository browser<span class="kw">&lt;/title&gt;</span>
+        <span class="kw">&lt;link</span><span class="ot"> href=</span><span class="st">’https://fonts.googleapis.com/css?family=Open+Sans</span><span class="er">&#39;</span><span class="ot"> rel=</span><span class="st">’stylesheet’</span><span class="ot"> type=</span><span class="st">’text/css’</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;link</span><span class="ot"> href=</span><span class="st">’https://fonts.googleapis.com/css?family=Lato:100italic</span><span class="er">&#39;</span><span class="ot"> rel=</span><span class="st">’stylesheet’</span><span class="ot"> type=</span><span class="st">’text/css’</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">”stylesheet”</span><span class="ot"> href=</span><span class="st">”dist/styles/main.css”</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">”text/javascript”</span><span class="ot"> src=</span><span class="st">”dist/Repos.js”</span><span class="kw">&gt;&lt;/script&gt;</span>
+    <span class="kw">&lt;/head&gt;</span>
+    <span class="kw">&lt;body&gt;</span>
+        <span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">”text/javascript”</span><span class="kw">&gt;</span>
+            <span class="kw">var</span> app <span class="op">=</span> <span class="va">Elm</span>.<span class="va">Repos</span>.<span class="at">fullscreen</span>()<span class="op">;</span>
+        <span class="op">&lt;</span><span class="ss">/script&gt;</span>
+<span class="ss">    &lt;/body</span><span class="op">&gt;</span>
+<span class="op">&lt;</span><span class="ss">/html&gt;</span></code></pre></div>
+<p>Nothing too fancy. As you can see there is new api for rendering app in fullscreen.</p>
+<p>just change:</p>
+<div class="sourceCode"><pre class="sourceCode js"><code class="sourceCode javascript"><span class="kw">var</span> app <span class="op">=</span> <span class="va">Elm</span>.<span class="at">fullscreen</span>(<span class="va">Elm</span>.<span class="at">Repos</span>)<span class="op">;</span></code></pre></div>
+<p>to new version:</p>
+<div class="sourceCode"><pre class="sourceCode js"><code class="sourceCode javascript"><span class="kw">var</span> app <span class="op">=</span> <span class="va">Elm</span>.<span class="va">Repos</span>.<span class="at">fullscreen</span>()<span class="op">;</span></code></pre></div>
+<p>That’s it. We are done!</p>
+<h2 id="or-not-edited-on-may-28th">Or not? (edited on May 28th)</h2>
+<p>As <a href="https://www.reddit.com/user/jediknight">jediknight</a> pointed out in <a href="https://www.reddit.com/r/elm/comments/4jhaxf/elm_017_successful_upgrade_of_real_world_app_and/">discussion on reddit</a> there is actually much nicer way how to create model msg tuple using <code>!</code> infix function! I recommend to use it since it adds some extra abstraction to your actions. This function takes two a arguments — model (whatever) and List of Msg. Let’s see how we can use it.</p>
+<p>this is on of our old update branches:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">update msg model <span class="fu">=</span>
+    <span class="kw">case</span> msg <span class="kw">of</span>
+        <span class="dt">NoOp</span> <span class="ot">-&gt;</span>
+            ( model, Cmd.none )</code></pre></div>
+<p>and this is how it looks like with use of <code>!</code> function</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">update msg model <span class="fu">=</span>
+    <span class="kw">case</span> msg <span class="kw">of</span>
+        <span class="dt">NoOp</span> <span class="ot">-&gt;</span>
+            model <span class="fu">!</span> []</code></pre></div>
+<p>As always <a href="https://gist.github.com/turboMaCk/a77498c85347eda4581b6be08be8c3ef#file-repos-elm">here</a> is shippet of whole application.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>I think this demonstrates one possible pattern of how to upgrade your web app written in elm to version 0.17. We started with views. Removing all calls to code we do not need to just get initial render. Then fixing update function and main (StartApp) code. Doing so bring us to state where we were able to get initial render. Then we made Http work so our app was able to fetch data a render them. We made events work so user can interact with app as before. And finally we connected our app to html.</p>
+<h2 id="elm-architecture-types">Elm, Architecture, Types…</h2>
+<p>Somewhere above I was taking about how hard it is to upgrade your application. I also mentioned few examples where the difference between legacy and new API made it almost impossible to upgrade existing code bases. I think <strong>with elm the situation is different</strong>.</p>
+<p>This is on of scenarios where types really cover your back. Thanks to the fact that elm is <a href="https://en.wikipedia.org/wiki/Strong_and_weak_typing">strongly</a> and <a href="http://stackoverflow.com/questions/1517582/what-is-the-difference-between-statically-typed-and-dynamically-typed-languages">statically</a> typed it’s <strong>not such a big deal to introduce huge API changes</strong> as 0.17 did. I’m not a hardcore static type fan boy. I think there are big trade offs while choosing static over dynamic typed languages. Dynamic typing should be pretty powerful in some cases. I’m also pretty big fan of meta programming (think about Lisp(s) or Ruby). Anyway with static typing comes some extra safety. Extra safety in terms that you no need to be afraid start aggressively rewriting parts of your code. I think this is one thing Elm really shines in. My bets on Elm are pretty high thanks to this. I think Elm’s community can really benefits of this nature of safety. I expect there is <strong>bright future for Elm as language and architecture</strong>. The potential of bringing cutting edge concepts and constantly iterating on all its building blocks can really runs over whole <strong>React</strong> and <strong>Clojure Script</strong> word. I strongly believe that neither of these ecosystems will be able to implement experimental primitives rethink its design and more importantly bring all of this easily to large scale production applications as Elm can.</p>
+<p>Thanks to everyone in this community for making all of this happened. I’m super excited about what came next.</p>]]></description>
+    <pubDate>Sun, 15 May 2016 00:00:00 UT</pubDate>
+    <guid>http://turbomack.github.iuo/posts/2016-05-15-eml-0.17-upgrade.html</guid>
+    <dc:creator>Marek Fajkus</dc:creator>
+</item>
+
+    </channel>
+</rss>
