@@ -27,14 +27,19 @@
           
         </h1>
 
-        <div class="info">
+        
+<div class="tags">
+    Posted in: <a href="../tags/typescript.html">typescript</a>, <a href="../tags/javascript.html">javascript</a>, <a href="../tags/d3.js.html">d3.js</a>.
+</div>
+
+<div class="info">
     Posted on December  7, 2016
     
 </div>
 
 <p>Yesterday I’ve been refactoring one of our internal library in <a href="globalwebindex.net">GWI</a> from JavaScript to TypeScript. As a JavaScript veteran I like to use some edgy non-conventional &amp; pre-ES 2015 coding styles. I’m not using <code>prototype</code>, <code>class</code> or <code>this</code> much often. I’m rather using <a href="http://javascript.info/tutorial/factory-constructor-pattern">Factory Constructor Pattern</a> quite often as well as <a href="https://en.wikipedia.org/wiki/Higher-order_function">Higher Order Functions</a> for simulating <a href="https://en.wikipedia.org/wiki/Currying">currying</a> and like to with objects and play with scopes. Now you might think that this is silly. No one will understand my code and using truly private functions makes it harder to extend functionality. And you’re right:D Anyway I know that I can write more reliable code more quickly and from my experience when code is reliable enough not many people will need to change it. And when they do they are mostly experienced and are able to understand it. Also I like private functions. If you miss any functionality or abstraction it’s always good idea to add it directly to library or write your own than hack it. Anyway this article is not about these patterns and how to use them but rather about how it feels when you put <a href="https://www.typescriptlang.org">TypeScript</a> in the mix. If you want to learn more about these patterns <a href="https://duckduckgo.com/">DuckDuckGo</a> some other article.</p>
 <p>First let me explain one thing. I’m not writing TypeScript day to day. But when I do I’m mostly exploring edges of what it can do. I’m writing a lot of ES 2015 ECMAScript in work and <a href="elm-lang.org">Elm</a> for fun (what is slowly changing since we already shipped first feature written in Elm elm as part of our production <a href="ember.js">Ember.js</a> app).</p>
-<h2 id="problem">Problem</h2>
+<h1 id="problem">Problem</h1>
 <p>The idea is this. We have got our internal system for charts written in <a href="https://d3js.org/">D3.js</a>. Some parts of this are <a href="https://github.com/GlobalWebIndex/d3scription">open-sourced and available on GitHub</a>. In GWI we have got whole charts written in pure D3 that are sharing common interface so on application layer you’re basically just dynamically switching factory functions for charts based on based on chart type and everything works like a magic. However testing visualization layer is hard or even impossible. Wouldn’t it be a good idea to have at least type check for these interfaces? I think it would!</p>
 <p>For purpose of this tutorial I’ve picked one smaller part rather than whole chart. D3 itself comes with component called <a href="https://github.com/d3/d3/blob/master/API.md#axes-d3-axis">d3.svg.axis</a>. However sometimes it doesn’t fit your needs so you’ll need to implement your own solution. Lets say we want to implement custom axis which will create ticks based on data we have so for each data-point it will create a tick on axis. This is how we want to use our new component:</p>
 <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">const</span> axis <span class="op">=</span> <span class="at">exactAxis</span>()
