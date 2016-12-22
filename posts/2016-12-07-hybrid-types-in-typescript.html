@@ -54,7 +54,7 @@
 <li><code>exactAxis()</code> returns <code>function</code> (and <strong>functions are Objects in JavaScript</strong>) with all methods defined.</li>
 <li>Each method will return object it’s called on (so we can chain method calls).</li>
 </ul>
-<h3 id="interface">Interface</h3>
+<h2 id="interface">Interface</h2>
 <p>Now we know what we need so lets define interface for out <code>exactAxis</code> function.</p>
 <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> <span class="op">*</span> <span class="im">as</span> d3 <span class="im">from</span> <span class="st">'d3'</span><span class="op">;</span>
 
@@ -83,7 +83,7 @@
 <span class="op">}</span></code></pre></div>
 <p>OK this is better. Now it’s obvious that we are passing some data around.</p>
 <p>There are still some <code>any</code> used for d3 parts but I think we can leave it.</p>
-<h3 id="so-called-hybrid-types-in-ts">So Called Hybrid Types in TS</h3>
+<h2 id="so-called-hybrid-types-in-ts">So Called Hybrid Types in TS</h2>
 <p>Now we can actually start implementing our axis component. This was the part I was not familiar till yesterday. I was actually asking some friends who work with typescript daily how an interface like this can be implemented in typescript but unluckily no one knew. I knew how this can be done in JS but that implementation did not satisfy tsc (compiler). Than as all SW engineers I’ve turned my last hope to <a href="https://www.typescriptlang.org/docs/handbook/interfaces.html">documentation</a> and found part about <a href="https://www.typescriptlang.org/docs/handbook/interfaces.html#hybrid-types">Hybrid Types</a>.</p>
 <blockquote>
 <p>As we mentioned earlier, interfaces can describe the rich types present in real world JavaScript. Because of JavaScript’s dynamic and flexible nature, you may occasionally encounter an object that works as a combination of some of the types described above.</p>
@@ -213,7 +213,7 @@
 <span class="op">}</span></code></pre></div>
 <p><em>Note: If you read carefully you know that I’m not using <code>this</code> often. However for this example has one usage of <code>this</code> to get element in d3’s <code>each</code> method. It doesn’t make sense to go against library API.</em></p>
 <p><em>Note: This is really simplified implementation. Actual thing similar to this we have in our lib uses 3 types of ticks (long text, short text, no text). This means also different interface for <code>FormatValue</code> an we are also always adding line tick (without text) in middle of ticks with text. However I think this simpler example is better for purpose of this article.</em></p>
-<h3 id="dont-drink-too-much-kool-aid">Don’t Drink Too Much Kool-Aid</h3>
+<h2 id="dont-drink-too-much-kool-aid">Don’t Drink Too Much Kool-Aid</h2>
 <p>TypeScript maybe lets you express these kind of dynamic APIs but there is down side to it. If you remove implementation for any method compiler won’t complain even though your function does not return valid <code>ExactAxis&lt;T&gt;</code> implementation. However if you make mistake in method implementation (change its types) it will fail during compile time which seems as an improvement to pure JS version. That said if you want to play with something like this It’s usually good idea to <strong>always start with boilerplate with all methods defined</strong>.</p>
 </main>
 
