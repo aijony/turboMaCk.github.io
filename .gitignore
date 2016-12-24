@@ -5,7 +5,17 @@ site
 site.hi
 site.o
 _site
+<<<<<<< HEAD
 generated
+||||||| merged common ancestors
+=======
+generated
+
+# publish
+publish
+publish.hi
+publish.o
+>>>>>>> develop
 
 # cabal
 cabal.sandbox.config

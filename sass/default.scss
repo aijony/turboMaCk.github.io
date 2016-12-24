@@ -1,9 +1,5 @@
-$font_family: open sans, helvetica, arial, sans-serif;
-$headline_font_family: cabin, helvetica, arial, sans-serif;
-$highlight_color: #00e4c8;
-$grey_color: #555;
-
-@import 'syntax-highlighting';
+@import 'variables';
+@import 'syntax';
 
 body {
     font-family: $font_family;
@@ -42,11 +38,92 @@ h2 {
 }
 
 pre {
-    border: 1px dashed lighten($highlight_color, 20%);
-    font-size: 14px;
-    line-height: 1.3rem;
-    padding: 10px 20px;
-    overflow: auto;
+    &.sourceCode {
+        border: 1px dashed lighten($highlight_color, 20%);
+        font-size: 14px;
+        line-height: 1.3rem;
+        padding: 10px 20px;
+        background: $light_color;
+        overflow: auto;
+
+        code {
+            padding: 0;
+            background: transparent;
+        }
+    }
+
+    &.example {
+        border: 1px dashed lighten($grey_color, 20%);
+        padding: 0 20px;
+        font-size: 0.8em;
+        background: lighten($grey_color, 65%);
+        margin-top: -15px;
+        border-top: 1px dotted lighten($highlight_color, 20%);
+
+        &::before {
+            content: "=>";
+            margin-right: 5px;
+        }
+
+        code {
+            padding: 0;
+            background: transparent;
+        }
+    }
+}
+
+code {
+    background: lighten($highlight_color, 50%);
+    padding: 0 2px;
+}
+
+blockquote {
+    position: relative;
+    margin-left: 4em;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    &::before {
+        content: '"';
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        font-size: 30px;
+        color: $grey_color;
+    }
+}
+
+table {
+    border-collapse: collapse;
+
+    td,
+    th {
+        border: 1px dashed black;
+        padding: 0 10px;
+
+    }
+
+    tr.even td {
+        background: lighten($grey_color, 50%);
+    }
+
+    th {
+        border-bottom: 1px solid black;
+        background: lighten($grey_color, 50%);
+    }
+}
+
+.footnoteRef {
+    border-bottom: none;
+}
+
+.footnotes {
+    color: $grey_color;
+    margin-top: 40px;
+
+    p, ol {
+        margin: 5px 0;
+    }
 }
 
 .subtitle {
@@ -70,12 +147,16 @@ pre {
     font-size: 20px;
     font-family: $headline_font_family;
     border-bottom: 2px solid black;
-    height: 75px;
+    height: 74px;
     padding-bottom: 7px;
     padding-left: 45px;
     box-sizing: border-box;
     float: left;
     line-height: 25px;
+
+    @media screen and (max-width: $mobile_breakpoint) {
+        padding-left: 15px;
+    }
 
     a {
         text-decoration: none;
@@ -106,6 +187,10 @@ pre {
     .content {
         overflow: hidden;
     }
+
+    @media screen and (max-width: $mobile_breakpoint) {
+        margin: 0 20px;
+    }
 }
 
 div#footer {
@@ -116,7 +201,8 @@ div#footer {
     padding: 12px 0px 12px 0px;
 }
 
-div.info {
+div.info,
+div.tags {
     color: $grey_color;
     font-size: 14px;
     font-style: italic;
@@ -138,9 +224,9 @@ div.info {
     }
 }
 
-.redit-discussion {
+.reddit-discussion {
     font-style: italic;
-    margin-top: 70px;
+    margin-top: 50px;
 
     .reddit-logo {
         float: left;

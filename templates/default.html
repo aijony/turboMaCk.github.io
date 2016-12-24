@@ -12,10 +12,10 @@
     <header class="page-header">
         <nav class="navigation">
             $if(home)$
-                <a href="/index.html" class="active">Hom≢</a>
+                <a href="/" class="active">Hom≢</a>
                 <a href="/archive.html">Blog</a>
             $else$
-                <a href="/index.html">Home</a>
+                <a href="/">Home</a>
                 <a href="/archive.html" class="active">B\og</a>
             $endif$
         </nav>
@@ -34,9 +34,14 @@
       </div>
       <div id="footer">
         <a href="https://github.com/turboMaCk/turboMaCk.github.io">Source</a> available under BSD-3-Clause.<br>
-        Content is pubished under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br>
-        Proudly powered by <a href="http://jaspervdj.be/hakyll">Hakyll</a>; Theme by Marek Fajkus
+        Content is pubished under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br>
+        Proudly powered by <a href="http://jaspervdj.be/hakyll">Hakyll</a>; Theme by Marek Fajkus<br>
+        <a href="/rss.xml">RSS 2.0</a> compatible
       </div>
     </main>
+
+    <!-- MathJax is library for displaying math nicely -->
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
   </body>
 </html>
