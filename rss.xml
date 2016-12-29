@@ -62,7 +62,7 @@
 <li>Perry Metzger - The Editor of The Lifetime talk <a href="https://www.youtube.com/watch?v=VADudzQGvU8" class="uri">https://www.youtube.com/watch?v=VADudzQGvU8</a></li>
 </ul>
 <a href="#fnref2">↩</a></li>
-<li id="fn3"><p>Actually Vim also supports plugins written in Python and other languages but these simply doesn’t feel like first class citizens.<a href="#fnref3">↩</a></p></li>
+<li id="fn3"><p>Actually Vim also supports plugins written in Python and other languages but these simply don’t feel like first class citizens.<a href="#fnref3">↩</a></p></li>
 <li id="fn4"><p>Check navigate.el for integration with Tmux. <a href="https://github.com/keith/evil-tmux-navigator" class="uri">https://github.com/keith/evil-tmux-navigator</a><a href="#fnref4">↩</a></p></li>
 </ol>
 </div>]]></description>
