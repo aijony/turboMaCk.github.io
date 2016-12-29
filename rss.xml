@@ -9,7 +9,7 @@
                    type="application/rss+xml" />
         <lastBuildDate>Thu, 29 Dec 2016 00:00:00 UT</lastBuildDate>
         <item>
-    <title>From Org to Emacs - Year Later</title>
+    <title>From Vim to Emacs - Year Later</title>
     <link>http://turbomack.github.iuo/posts/2016-12-29-from-vim-to-emacs-year-later.html</link>
     <description><![CDATA[<p>It’s been about a year since I’ve switched from my highly customized vim to Emacs as a default editor. I have to admit it I had sometimes pretty tough times with Emacs especially at the beginnings. You can imagine someone who gets so much used to his customized setup in one environment to sometimes feel frustrated while making switch and starting new setup from scratch. Anyway at the same time I’ve found it really beneficial and I believe it helped me reevaluate a lot of thoughts on how interaction with computer and tools in general. This article isn’t meant in any sense to be tutorial to neither Emacs nor Vim but is rather a reasoning about my experience and recapitulation of what I’ve learned during last year in this sense. Can it really help someone? I don’t know. But I still feel it’s worth putting these ideas down.</p>
 <h1 id="why-would-anyone-possibly-want-to-do-this">Why Would Anyone Possibly Want To Do This?</h1>
