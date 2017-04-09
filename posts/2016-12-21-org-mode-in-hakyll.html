@@ -48,8 +48,8 @@
 <h2 id="some-basic-test">Some basic test</h2>
 <p>This is <strong>bold</strong>, <em>italic</em>, <code>code</code>, <code>verbatim</code> and <del>strike</del> text.</p>
 <ul>
-<li>However <strong>/bold and italic/</strong> doesn’t play well when used together like in markdown.</li>
-<li>However <em>*bold and italic*</em> doesn’t play well when used together like in markdown.</li>
+<li>However <strong><em>bold and italic</em></strong> doesn’t play well when used together like in markdown.</li>
+<li>However <em><strong>bold and italic</strong></em> doesn’t play well when used together like in markdown.</li>
 </ul>
 <h2 id="list">List</h2>
 <ul>
@@ -89,8 +89,8 @@
 </ul>
 <p>Heading and has special class however <code>&lt;ul&gt;</code> and <code>&lt;li&gt;</code> are plain.</p>
 <h2 id="task-list">Task List</h2>
-<h3 id="todo-some-to-do">TODO some to-do</h3>
-<h3 id="done-done-to-do">DONE done to-do</h3>
+<h3 id="some-to-do"><span class="todo TODO">TODO</span> some to-do</h3>
+<h3 id="done-to-do"><span class="done DONE">DONE</span> done to-do</h3>
 <p>Items are added with special class.</p>
 <h2 id="tables">Tables</h2>
 <table>
@@ -185,12 +185,13 @@ factorial n <span class="fu">=</span> n <span class="fu">*</span> factorial (n <
 
 
       </div>
-      <div id="footer">
+      <footer id="footer">
         <a href="https://github.com/turboMaCk/turboMaCk.github.io">Source</a> available under BSD-3-Clause.<br>
         Content is pubished under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br>
         Proudly powered by <a href="http://jaspervdj.be/hakyll">Hakyll</a>; Theme by Marek Fajkus<br>
-        <a href="../rss.xml">RSS 2.0</a> compatible
-      </div>
+        <a href="../rss.xml">RSS 2.0</a> compatible<br>
+        This site is not tracking you.
+      </footer>
     </main>
 
     <!-- MathJax is library for displaying math nicely -->
